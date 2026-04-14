@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DESKTOP-V0NE27S_MSSQLSERVER2.UPI_Staging"
+  DTS:DTSID="{90E55675-D2D9-445A-8751-34624A3BEFB3}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=DESKTOP-V0NE27S\MSSQLSERVER2;Initial Catalog=UPI_Staging;Provider=MSOLEDBSQL19.1;Integrated Security=SSPI;Use Encryption for Data=Optional;Trust Server Certificate=True;Application Name=SSIS-UPI_ETL-{90E55675-D2D9-445A-8751-34624A3BEFB3}DESKTOP-V0NE27S\MSSQLSERVER2.UPI_Staging;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -1,0 +1,2040 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/22/2026 8:03:03 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-V0NE27S"
+  DTS:CreatorName="DESKTOP-V0NE27S\LENOVO"
+  DTS:DTSID="{04758A5E-8571-4D11-9B02-47B10A3B02C2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Load_Staging"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{F07FDC1C-CD7F-4685-B9F9-2E731E46D8EE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{17057EFB-0819-4D7C-9331-56D445543F63}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\university\3 yr-1 sem\DWBI\Assignment\SourceFiles\merchant_category_mapping.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load BankMaster"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{694C1675-271D-4A20-82F7-C9BB5BEF4B47}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load BankMaster"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load BankMaster\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stg_BankMaster]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load BankMaster\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{90E55675-D2D9-445A-8751-34624A3BEFB3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-V0NE27S_MSSQLSERVER2.UPI_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load BankMaster\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load BankMaster\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[bank_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="bank_name"
+                      externalMetadataColumnId="Package\Load BankMaster\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[bank_name]"
+                      lineageId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].Columns[bank_name]" />
+                    <inputColumn
+                      refId="Package\Load BankMaster\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[bank_group]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="bank_group"
+                      externalMetadataColumnId="Package\Load BankMaster\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[bank_group]"
+                      lineageId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].Columns[bank_group]" />
+                    <inputColumn
+                      refId="Package\Load BankMaster\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[bank_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="bank_type"
+                      externalMetadataColumnId="Package\Load BankMaster\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[bank_type]"
+                      lineageId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].Columns[bank_type]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load BankMaster\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[bank_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="bank_name" />
+                    <externalMetadataColumn
+                      refId="Package\Load BankMaster\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[bank_group]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="bank_group" />
+                    <externalMetadataColumn
+                      refId="Package\Load BankMaster\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[bank_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="bank_type" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load BankMaster\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load BankMaster\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load BankMaster\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load BankMaster\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load BankMaster\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load BankMaster\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load BankMaster\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT bank_name, bank_group, bank_type
+FROM UPI_Source.dbo.BankMaster;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load BankMaster\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{90E55675-D2D9-445A-8751-34624A3BEFB3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-V0NE27S_MSSQLSERVER2.UPI_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].Columns[bank_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[bank_name]"
+                      length="100"
+                      lineageId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].Columns[bank_name]"
+                      name="bank_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].Columns[bank_group]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[bank_group]"
+                      length="50"
+                      lineageId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].Columns[bank_group]"
+                      name="bank_group"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].Columns[bank_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[bank_type]"
+                      length="50"
+                      lineageId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].Columns[bank_type]"
+                      name="bank_type"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[bank_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="bank_name" />
+                    <externalMetadataColumn
+                      refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[bank_group]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="bank_group" />
+                    <externalMetadataColumn
+                      refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[bank_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="bank_type" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[bank_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[bank_name]"
+                      name="bank_name" />
+                    <outputColumn
+                      refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[bank_group]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[bank_group]"
+                      name="bank_group" />
+                    <outputColumn
+                      refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[bank_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[bank_type]"
+                      name="bank_type" />
+                    <outputColumn
+                      refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load BankMaster.Paths[OLE DB Source Output]"
+              endId="Package\Load BankMaster\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load BankMaster\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Merchant CSV"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{985A6E7B-4D28-48D6-822C-2E3ADE1DB392}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Merchant CSV"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Merchant CSV\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Merchant CSV\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="{C08D8478-46D2-4B7A-88BC-5A362DFDFF63}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CM_Merchant_CSV]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].Columns[merchant_category]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[merchant_category]"
+                      length="50"
+                      lineageId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].Columns[merchant_category]"
+                      name="merchant_category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].Columns[merchant_group]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[merchant_group]"
+                      length="50"
+                      lineageId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].Columns[merchant_group]"
+                      name="merchant_group"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].Columns[spending_behavior]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[spending_behavior]"
+                      length="50"
+                      lineageId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].Columns[spending_behavior]"
+                      name="spending_behavior"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[merchant_category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="merchant_category" />
+                    <externalMetadataColumn
+                      refId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[merchant_group]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="merchant_group" />
+                    <externalMetadataColumn
+                      refId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[spending_behavior]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="spending_behavior" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Merchant CSV\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stg_MerchantCategoryMapping]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Merchant CSV\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{90E55675-D2D9-445A-8751-34624A3BEFB3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-V0NE27S_MSSQLSERVER2.UPI_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Merchant CSV\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Merchant CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[merchant_category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="merchant_category"
+                      externalMetadataColumnId="Package\Load Merchant CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[merchant_category]"
+                      lineageId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].Columns[merchant_category]" />
+                    <inputColumn
+                      refId="Package\Load Merchant CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[merchant_group]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="merchant_group"
+                      externalMetadataColumnId="Package\Load Merchant CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[merchant_group]"
+                      lineageId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].Columns[merchant_group]" />
+                    <inputColumn
+                      refId="Package\Load Merchant CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[spending_behavior]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="spending_behavior"
+                      externalMetadataColumnId="Package\Load Merchant CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[spending_behavior]"
+                      lineageId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output].Columns[spending_behavior]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Merchant CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[merchant_category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="merchant_category" />
+                    <externalMetadataColumn
+                      refId="Package\Load Merchant CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[merchant_group]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="merchant_group" />
+                    <externalMetadataColumn
+                      refId="Package\Load Merchant CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[spending_behavior]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="spending_behavior" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Merchant CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Merchant CSV\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Merchant CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Merchant CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Merchant CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Merchant CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Merchant CSV.Paths[Flat File Source Output]"
+              endId="Package\Load Merchant CSV\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Load Merchant CSV\Flat File Source.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load UPI CSV"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7BA039A7-E2D2-4B24-9066-3E30974E226F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load UPI CSV"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load UPI CSV\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load UPI CSV\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load UPI CSV\Data Conversion.Inputs[Data Conversion Input].Columns[amount_inr]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="amount_inr"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[amount_inr]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\Data Conversion.Inputs[Data Conversion Input].Columns[fraud_flag]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="fraud_flag"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[fraud_flag]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\Data Conversion.Inputs[Data Conversion Input].Columns[hour_of_day]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="hour_of_day"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[hour_of_day]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\Data Conversion.Inputs[Data Conversion Input].Columns[is_weekend]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="is_weekend"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[is_weekend]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Load UPI CSV\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Output].Columns[amount_inr_num]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Output].Columns[amount_inr_num]"
+                      name="amount_inr_num"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[amount_inr]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Output].Columns[fraud_flag_num]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Output].Columns[fraud_flag_num]"
+                      name="fraud_flag_num"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[fraud_flag]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Output].Columns[hour_of_day_num]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Output].Columns[hour_of_day_num]"
+                      name="hour_of_day_num"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[hour_of_day]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Output].Columns[is_weekend_num]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Output].Columns[is_weekend_num]"
+                      name="is_weekend_num"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[is_weekend]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Load UPI CSV\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load UPI CSV\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load UPI CSV\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="{0276FC02-B5D4-4869-828B-5C1FC4052E09}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CM_UPI_CSV]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[transaction_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[transaction_id]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[transaction_id]"
+                      name="transaction_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[transaction_timestamp]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[transaction_timestamp]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[transaction_timestamp]"
+                      name="transaction_timestamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[transaction_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[transaction_type]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[transaction_type]"
+                      name="transaction_type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[merchant_category]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[merchant_category]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[merchant_category]"
+                      name="merchant_category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[amount_inr]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[amount_inr]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[amount_inr]"
+                      name="amount_inr"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[transaction_status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[transaction_status]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[transaction_status]"
+                      name="transaction_status"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[sender_age_group]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[sender_age_group]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[sender_age_group]"
+                      name="sender_age_group"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[receiver_age_group]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[receiver_age_group]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[receiver_age_group]"
+                      name="receiver_age_group"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[sender_state]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[sender_state]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[sender_state]"
+                      name="sender_state"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[sender_bank]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[sender_bank]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[sender_bank]"
+                      name="sender_bank"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[receiver_bank]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[receiver_bank]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[receiver_bank]"
+                      name="receiver_bank"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[device_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[device_type]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[device_type]"
+                      name="device_type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[network_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[network_type]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[network_type]"
+                      name="network_type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[fraud_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[fraud_flag]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[fraud_flag]"
+                      name="fraud_flag"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[hour_of_day]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[hour_of_day]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[hour_of_day]"
+                      name="hour_of_day"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[day_of_week]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[day_of_week]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[day_of_week]"
+                      name="day_of_week"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[is_weekend]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[is_weekend]"
+                      length="50"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[is_weekend]"
+                      name="is_weekend"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[transaction_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="transaction_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[transaction_timestamp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="transaction_timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[transaction_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="transaction_type" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[merchant_category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="merchant_category" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[amount_inr]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="amount_inr" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[transaction_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="transaction_status" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[sender_age_group]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="sender_age_group" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[receiver_age_group]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="receiver_age_group" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[sender_state]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="sender_state" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[sender_bank]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="sender_bank" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[receiver_bank]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="receiver_bank" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[device_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="device_type" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[network_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="network_type" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[fraud_flag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="fraud_flag" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[hour_of_day]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="hour_of_day" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[day_of_week]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="day_of_week" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[is_weekend]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="is_weekend" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load UPI CSV\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stg_UPI_Transactions]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load UPI CSV\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{90E55675-D2D9-445A-8751-34624A3BEFB3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-V0NE27S_MSSQLSERVER2.UPI_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[transaction_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="transaction_id"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[transaction_id]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[transaction_id]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[transaction_timestamp]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="transaction_timestamp"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[transaction_timestamp]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[transaction_timestamp]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[transaction_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="transaction_type"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[transaction_type]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[transaction_type]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[merchant_category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="merchant_category"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[merchant_category]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[merchant_category]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[amount_inr]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="amount_inr"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[amount_inr]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[amount_inr]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[transaction_status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="transaction_status"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[transaction_status]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[transaction_status]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sender_age_group]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="sender_age_group"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sender_age_group]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[sender_age_group]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[receiver_age_group]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="receiver_age_group"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[receiver_age_group]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[receiver_age_group]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sender_state]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="sender_state"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sender_state]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[sender_state]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sender_bank]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="sender_bank"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sender_bank]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[sender_bank]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[receiver_bank]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="receiver_bank"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[receiver_bank]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[receiver_bank]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[device_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="device_type"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[device_type]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[device_type]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[network_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="network_type"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[network_type]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[network_type]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[fraud_flag]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="fraud_flag"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fraud_flag]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[fraud_flag]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[hour_of_day]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="hour_of_day"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[hour_of_day]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[hour_of_day]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[day_of_week]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="day_of_week"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[day_of_week]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[day_of_week]" />
+                    <inputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[is_weekend]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="is_weekend"
+                      externalMetadataColumnId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[is_weekend]"
+                      lineageId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output].Columns[is_weekend]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[transaction_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="transaction_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[transaction_timestamp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="transaction_timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[transaction_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="transaction_type" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[merchant_category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="merchant_category" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[amount_inr]"
+                      dataType="numeric"
+                      name="amount_inr"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[transaction_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="transaction_status" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sender_age_group]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="sender_age_group" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[receiver_age_group]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="receiver_age_group" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sender_state]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="sender_state" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sender_bank]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="sender_bank" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[receiver_bank]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="receiver_bank" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[device_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="device_type" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[network_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="network_type" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fraud_flag]"
+                      dataType="i4"
+                      name="fraud_flag" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[hour_of_day]"
+                      dataType="i4"
+                      name="hour_of_day" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[day_of_week]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="day_of_week" />
+                    <externalMetadataColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[is_weekend]"
+                      dataType="i4"
+                      name="is_weekend" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load UPI CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load UPI CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load UPI CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load UPI CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load UPI CSV.Paths[Data Conversion Output]"
+              endId="Package\Load UPI CSV\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Load UPI CSV\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Load UPI CSV.Paths[Flat File Source Output]"
+              endId="Package\Load UPI CSV\Data Conversion.Inputs[Data Conversion Input]"
+              name="Flat File Source Output"
+              startId="Package\Load UPI CSV\Flat File Source.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A0B9F061-7247-4C31-813E-26616F959008}"
+      DTS:From="Package\Load UPI CSV"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Merchant CSV" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{104B0D7F-ED5E-46CF-8B36-9748E39EB03B}"
+      DTS:From="Package\Load Merchant CSV"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load BankMaster" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package\Load BankMaster"
+          TopLeft="37.4999979510904,202.799998589754" />
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Load Merchant CSV"
+          TopLeft="29.9999983608724,120.466665828957" />
+        <NodeLayout
+          Size="143.2,41.6"
+          Id="Package\Load UPI CSV"
+          TopLeft="41.428569246109,38.5921566129696" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="114.514283803491,80.1921566129696">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.2745092159874"
+              Start="0,0"
+              End="0,32.7745092159874">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.7745092159874" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="116.749998155981,162.066665828957">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.733332760797"
+              Start="0,0"
+              End="0,33.233332760797">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.233332760797" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load BankMaster">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Load BankMaster\OLE DB Source"
+          TopLeft="99.9999985098839,42.9999993592501" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load BankMaster\OLE DB Destination"
+          TopLeft="315.999995291233,47.9999992847443" />
+        <EdgeLayout
+          Id="Package\Load BankMaster.Paths[OLE DB Source Output]"
+          TopLeft="251.999998509884,66.2999993219972">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="63.9999967813493,0"
+              Start="0,0"
+              End="56.4999967813493,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="56.4999967813493,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load BankMaster\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load BankMaster\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Merchant CSV">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load Merchant CSV\OLE DB Destination"
+          TopLeft="348.999994799495,14.9999997764826" />
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Load Merchant CSV\Flat File Source"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Load Merchant CSV.Paths[Flat File Source Output]"
+          TopLeft="156.7,26.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="192.299994799495,9.49999977648259"
+              Start="0,0"
+              End="184.799994799495,9.49999977648259">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="92.1499973997474,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="92.1499973997474,0"
+                    Point2="96.1499973997474,0"
+                    Point3="96.1499973997474,4" />
+                  <mssgle:LineSegment
+                    End="96.1499973997474,5.49999977648259" />
+                  <mssgle:CubicBezierSegment
+                    Point1="96.1499973997474,5.49999977648259"
+                    Point2="96.1499973997474,9.49999977648259"
+                    Point3="100.149997399747,9.49999977648259" />
+                  <mssgle:LineSegment
+                    End="184.799994799495,9.49999977648259" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Merchant CSV\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load UPI CSV">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load UPI CSV\OLE DB Destination"
+          TopLeft="457.499975003303,12.9999999095996" />
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Load UPI CSV\Flat File Source"
+          TopLeft="54.9999969949326,15.5999998915195" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\Load UPI CSV\Data Conversion"
+          TopLeft="246.666653189395,16.4666665521595" />
+        <EdgeLayout
+          Id="Package\Load UPI CSV.Paths[Flat File Source Output]"
+          TopLeft="206.199996994933,36.8333332218395">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.4666561944622,0"
+              Start="0,0"
+              End="32.9666561944622,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.9666561944622,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load UPI CSV.Paths[Data Conversion Output]"
+          TopLeft="402.666653189395,35.5333332308795">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54.8333218139082,0"
+              Start="0,0"
+              End="47.3333218139082,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.3333218139082,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load UPI CSV\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
