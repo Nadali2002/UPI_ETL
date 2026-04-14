@@ -148,8 +148,8 @@ This project demonstrates a complete **end-to-end Data Warehouse solution**, inc
 
 ## 👩‍💻 Author
 
-**Devindi K G N**
-IT Number: IT23545694
+**Nadali Devindi**
+
 SLIIT – Data Warehousing & Business Intelligence
 
 ---
